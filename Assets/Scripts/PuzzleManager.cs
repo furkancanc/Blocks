@@ -22,9 +22,9 @@ public class PuzzleManager : MonoBehaviour
 
             MeshFilter mf = pieceObj.AddComponent<MeshFilter>();
             MeshRenderer mr = pieceObj.AddComponent<MeshRenderer>();
-            mf.mesh = ProceduralMeshGenerator.GeneratePieceMesh(pieceData, cellSize);
+            mf.mesh = ProceduralMeshGenerator.GeneratePieceMeshFromCells(pieceData, cellSize);
 
-            Material mat = new Material(Shader.Find("Standard"));
+            Material mat = new Material(Shader.Find("Unlit/Color"));
             if (ColorUtility.TryParseHtmlString(pieceData.color, out Color col))
                 mat.color = col;
             mr.material = mat;
@@ -34,7 +34,9 @@ public class PuzzleManager : MonoBehaviour
 
             pieceObj.AddComponent<Draggable>();
 
-            pieceObj.transform.position = new Vector3(Random.Range(0, levelData.boardSize), Random.Range(levelData.boardSize + 1, levelData.boardSize + 3), 0);
+            //pieceObj.transform.position = new Vector3(Random.Range(0, levelData.boardSize), Random.Range(levelData.boardSize + 1, levelData.boardSize + 3), 0);
+            pieceObj.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5f;
+
         }
     }
 }

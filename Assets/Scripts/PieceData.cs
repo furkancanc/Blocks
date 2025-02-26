@@ -10,9 +10,3 @@ public class PieceData : MonoBehaviour
     public string color;
 }
 
-[System.Serializable]
-public class LevelData
-{
-    public int boardSize;
-    public List<PieceData> pieces;
-}

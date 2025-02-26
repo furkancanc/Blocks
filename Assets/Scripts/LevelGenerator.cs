@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum Difficulty { Easy, Medium, Hard }
@@ -36,7 +36,7 @@ public static class LevelGenerator
     {
         List<PieceData> pieces = new List<PieceData>();
         int[,] board = new int[boardSize, boardSize];
-
+        // Tüm hücreleri -1 (boş) olarak işaretle
         for (int y = 0; y < boardSize; y++)
         {
             for (int x = 0; x < boardSize; x++)
@@ -55,7 +55,7 @@ public static class LevelGenerator
             Vector2Int start = FindRandomEmptyCell(board, boardSize);
             if (start.x < 0) break;
             List<Vector2Int> pieceCells = BFSExpand(board, boardSize, start, targetSize);
-
+            // Board’u işaretle
             foreach (var cell in pieceCells)
             {
                 board[cell.x, cell.y] = pieceId;
@@ -70,6 +70,7 @@ public static class LevelGenerator
         }
         return pieces;
     }
+
 
     private static Vector2Int FindRandomEmptyCell(int[,] board, int boardSize)
     {
